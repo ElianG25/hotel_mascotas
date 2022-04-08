@@ -1,0 +1,2 @@
+# hotel_mascotas
+Reto: Nos gustaría que desarrolles una aplicación de mantenimiento (CRUD-ABM), para un hotel de mascotas.  En este hotel se reciben diferentes tipos de mascotas, cada una con propietarios, disponen de diferentes tamaños de aulas, y diferentes tarifas por noche.  Además tienen servicios adicionales de alimentación de marcas particulares de alimentos.  La idea es crear la aplciación en python-django con diferentes modelos para cada tipo de entidad mencionada, que incluyan controles de calidad (QA) y se almacenen en Postgres.
