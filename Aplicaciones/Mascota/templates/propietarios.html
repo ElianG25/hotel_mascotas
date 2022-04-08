@@ -1,0 +1,83 @@
+{% extends "./base.html" %}
+
+{% block title %} Gestionar Propietarios - Hotel de Mascotas | beta0.1 {% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+            <div class="text-center d-flex justify-content-center">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="/nuevoP/" class="mx-4" method="POST"> {% csrf_token %}
+                            <h2 class="fw-bolder text-uppercase fs-2">Crear nuevo Propietario</h2>
+                            <label for="nombre" class="form-label">Nombre(s)</label>
+                            <input type="nombre" class="form-control" name="nombre" id="nombre" required>
+                            <label for="apellido" class="form-label">Apellido(s)</label>
+                            <input type="apellido" class="form-control" name="apellido" id="apellido" required>
+                            <label for="direccion" class="form-label">Direccion</label>
+                            <textarea type="direccion" class="form-control" name="direccion" id="direccion"
+                                aria-describedby="direccionHelp" required></textarea>
+                            <div id="direccionHelp" class="form-text">Calle, # de casa o apartamento, barrio, y ciudad.
+                            </div>
+                            <label for="telefono" class="form-label">Telefono</label>
+                            <input type="telefono" class="form-control" name="telefono" id="telefono"
+                                aria-describedby="telefonoHelp" maxlength="10" required>
+                            <div id="telefonoHelp" class="form-text">Sin parentesis, guiones ni signos.</div><br>
+                            <button type="submit" class="btn btn-primary">Guardar</button> <br>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+            <h2 class="fw-bolder text-uppercase fs-2 text-center">Listado de Propietarios</h2>
+            <div class="table-responsive">
+                <table class="table table-striped text-center">
+                    <thead>
+                        <tr>
+                            <th><i class="fa-solid fa-signature"></i> Nombre</th>
+                            <th><i class="fa-solid fa-phone"></i> Telefono</th>
+                            <th><i class="fa-solid fa-list-ol"></i> Mascotas registradas</th>
+                            <th><i class="fa-solid fa-dollar-sign"></i> Total a pagar</th>
+                            <th><i class="fa-solid fa-pen-to-square"></i> Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            {% for p in props %}
+                            <td>{{p.nombre}} {{p.apellido}}</td>
+                            <td>{{p.telefono}}</td>
+                            <td>
+                                {% for m in mascs %}
+                                    {% if m.propietario_id == p.id %}
+                                        {{m.nombre}} ({{m.raza}}),
+                                    {% else %}
+                                    
+                                    {% endif %}
+                                {% endfor %}
+                            </td>
+                            <td>
+                                {% for m in mascs %}
+                                    {% if m.propietario_id == p.id %}
+                                        Aula: ${{m.aula.tarifa_por_noche}} Comida: ${{m.servicio.precio}}<br>
+                                    {% else %}
+                                    
+                                    {% endif %}
+                                {% endfor %}
+                            <td>
+                                <a href="edicionP/{{p.id}}" class="btn btn-warning"><i
+                                        class="fa-solid fa-pencil"></i></a>
+                                <a href="eliminarP/{{p.id}}" class="btn btn-danger eliminarEventoJS"><i
+                                        class="fa-solid fa-trash-can"></i></a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

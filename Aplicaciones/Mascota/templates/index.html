@@ -1,0 +1,25 @@
+{% extends "./base.html" %}
+
+{% block title %} Hotel de Mascotas | beta0.1 {% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <h1 class="text-center">Bienvenido, por favor especifique que quiere realizar hoy.</h1>
+    <hr> <br>
+    <div class="container d-flex justify-content-center">
+        <a href="propietarios/" type="button" class="btn btn-large btn-success fw-bolder text-uppercase fs-2"
+            style="width: 600px; height: 170px;">
+            <div class="m-5"><i class="fa-solid fa-user"></i> Gestionar propietarios</div>
+        </a>
+    </div> <br>
+    <div class="container d-flex justify-content-center">
+        <a href="mascotas/" type="button" class="btn btn-large btn-primary fw-bolder text-uppercase fs-2"
+            style="width: 600px; height: 170px;">
+            <div class="m-5"><i class="fa-solid fa-paw"></i> Gestionar mascotas</div>
+        </a>
+    </div> <hr>
+    <div class="container d-flex justify-content-center">
+        <h1 class="fs-4">Aplicación creada con <span class="text-danger"><i class="fa-solid fa-heart"></i></span> por <span class="fw-bolder">Elian Gomez</span></h1>
+    </div>
+</div>
+{% endblock %}

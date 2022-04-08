@@ -1,0 +1,40 @@
+{% extends "./base.html" %}
+
+{% block title %} Editar Propietario - Hotel de Mascotas | beta0.1 {% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <div class="text-center d-flex justify-content-center">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="/editarP/" class="mx-4" method="POST"> {% csrf_token %}
+                            <h2 class="fw-bolder text-uppercase fs-2">Editar Propietario existente</h2>
+                            <label for="nombre" class="form-label">ID</label>
+                            <input type="id" class="form-control" name="id" id="id" value="{{propietario.id}}"
+                                aria-describedby="IDHelp" required readonly>
+                            <div id="IDHelp" class="form-text">El ID no puede ser editado.
+                            </div>
+                            <label for="nombre" class="form-label">Nombre(s)</label>
+                            <input type="nombre" class="form-control" name="nombre" id="nombre"
+                                value="{{propietario.nombre}}" required>
+                            <label for="apellido" class="form-label">Apellido(s)</label>
+                            <input type="apellido" class="form-control" name="apellido" id="apellido" value="{{propietario.apellido}}"  required>
+                            <label for="direccion" class="form-label">Direccion</label>
+                            <textarea type="direccion" class="form-control" name="direccion" id="direccion"
+                                aria-describedby="direccionHelp" required>{{propietario.direccion}}</textarea>
+                            <div id="direccionHelp" class="form-text">Calle, # de casa o apartamento, barrio, y ciudad.
+                            </div>
+                            <label for="telefono" class="form-label">Telefono</label>
+                            <input type="telefono" class="form-control" name="telefono" id="telefono"
+                                value="{{propietario.telefono}}" aria-describedby="telefonoHelp" maxlength="10"
+                                required>
+                            <div id="telefonoHelp" class="form-text">Sin parentesis, guiones ni signos.</div><br>
+                            <button type="submit" class="btn btn-primary">Guardar</button> <br>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
